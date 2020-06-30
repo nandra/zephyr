@@ -15,21 +15,7 @@
 #include <etl/list.h>
 #include <etl/container.h>
 
-/* The devicetree node identifier for the "led0" alias. */
-#define LED0_NODE DT_ALIAS(led0)
-
-#if DT_HAS_NODE(LED0_NODE)
-#define LED0    DT_GPIO_LABEL(LED0_NODE, gpios)
-#define PIN     DT_GPIO_PIN(LED0_NODE, gpios)
-#if DT_PHA_HAS_CELL(LED0_NODE, gpios, flags)
-#define FLAGS   DT_GPIO_FLAGS(LED0_NODE, gpios)
-#endif
-#else
-/* A build error here means your board isn't set up to blink an LED. */
-#error "Unsupported board: led0 devicetree alias is not defined"
-#define LED0    ""
-#define PIN     0
-#endif
+#define led 6
 
 void iterate(const etl::ilist<int>& delays, struct device* dev)
 {
@@ -42,9 +28,9 @@ void iterate(const etl::ilist<int>& delays, struct device* dev)
 
     while (itr != delays.end())
     {
-	    gpio_pin_set(dev, PIN, 1);
+	    gpio_pin_set(dev, led, 1);
 	    k_msleep(100);
-	    gpio_pin_set(dev, PIN, 0);
+	    gpio_pin_set(dev, led, 0);
 	    k_msleep(*itr++);
     }
 }
@@ -66,12 +52,12 @@ void main()
 
   struct device *dev;
 	
-  dev = device_get_binding(LED0);
+  dev = device_get_binding("GPIOA");
 	if (dev == NULL) {
      return;
 	}
 	
-	int ret = gpio_pin_configure(dev, PIN, GPIO_OUTPUT_ACTIVE | FLAGS);
+	int ret = gpio_pin_configure(dev, led, GPIO_OUTPUT_ACTIVE);
 	if (ret < 0) {
 		return;
 	}

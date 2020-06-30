@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: Apache-2.0
+
+cmake_minimum_required(VERSION 3.13.1)
+find_package(Zephyr HINTS $ENV{ZEPHYR_BASE})
+project(cpp_synchronization)
+
+target_include_directories(app PUBLIC ${CMAKE_SOURCE_DIR}/src/etl/include ${CMAKE_SOURCE_DIR}/src/include)
+
+message("### ${CMAKE_SOURCE_DIR}/src/etl/include/etl")
+
+target_sources(app PRIVATE src/main.cpp)
