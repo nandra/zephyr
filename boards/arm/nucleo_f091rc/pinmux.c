@@ -43,6 +43,10 @@ static const struct pin_config pinconf[] = {
 #ifdef CONFIG_ADC_1
 	{STM32_PIN_PA0, STM32F0_PINMUX_FUNC_PA0_ADC_IN0},
 #endif /* CONFIG_ADC_1 */
+
+#ifdef CONFIG_PWM_2
+	{STM32_PIN_PB3, STM32_PINMUX_ALT_FUNC_2 | STM32_PUSHPULL_PULLUP | STM32_OSPEEDR_HIGH_SPEED}
+#endif
 };
 
 static int pinmux_stm32_init(struct device *port)

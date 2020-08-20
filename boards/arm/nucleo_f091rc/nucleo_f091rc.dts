@@ -93,3 +93,10 @@
 &adc1 {
 	status = "okay";
 };
+
+&timers2 {
+	status = "okay";
+};
+&pwm {
+	status = "okay";
+};

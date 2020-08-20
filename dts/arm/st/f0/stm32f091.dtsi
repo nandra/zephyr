@@ -21,7 +21,7 @@
 			status = "disabled";
 			label = "TIMERS_2";
 
-			pwm {
+			pwm: pwm_2 {
 				compatible = "st,stm32-pwm";
 				status = "disabled";
 				st,prescaler = <0>;
