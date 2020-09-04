@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: Apache-2.0
+
+config LCD_HD44780_I2C
+	bool "Enable Hitachi HD44780 with I2C PCF gpio expander"
+	help
+	  Setting this value will enable driver support for the Groove-LCD RGB
+	  Backlight.
+
+config LCD_HD44780_I2C_MASTER_DEV_NAME
+	string "I2C Master where LCD HD44780 is connected"
+	depends on LCD_HD44780_I2C
+	default "I2C_1"
+	help
+	  Specify the device name of the I2C master device to which the
+	  LCD is connected.

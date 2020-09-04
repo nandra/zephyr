@@ -35,5 +35,12 @@
 	};
 };
 
-arduino_i2c: &i2c1 {};
+arduino_i2c: &i2c1 {
+	status = "okay";
+	lcd: lcd@27 {
+		compatible = "123";
+		label = "LCD";
+		reg = <0x27>;
+	};
+};
 arduino_spi: &spi1 {};
